@@ -9,27 +9,38 @@ class DishdetailComponent extends Component {
         };
     }
 
+    renderDish(dish){
+        return (
+                <Card>
+                    <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+        );
+    }
+
+    renderComments(dish){
+        const comments = dish.comments.map((comment)=>{
+            return(<div key={comment.id}>
+                <p>{comment.comment}</p>
+                <p>-- {comment.author}, {comment.date}</p>
+            </div>)
+        });
+        return comments;
+    }
+
     render(){
         if(this.state.details!=null){
             let dish = this.state.details;
             
-            const comments = dish.comments.map((comment)=>{
-                return(<div key={comment.id}>
-                    <p>{comment.comment}</p>
-                    <p>-- {comment.author}, {comment.date}</p>
-                </div>)
-            });
-            
+            const comments = this.renderComments(dish);
+            const dishDetails = this.renderDish(dish);
             return (
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        <Card>
-                            <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
-                            <CardBody>
-                                <CardTitle>{dish.name}</CardTitle>
-                                <CardText>{dish.description}</CardText>
-                            </CardBody>
-                        </Card>
+                        { dishDetails }
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <h3>Comments</h3>
