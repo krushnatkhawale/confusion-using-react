@@ -20,7 +20,6 @@ class DishdetailComponent extends Component {
                 </div>)
             });
             
-            console.log(dish);
             return (
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
