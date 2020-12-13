@@ -10,6 +10,9 @@ export const initialState = {
     leaders: LEADERS
 };
 
-export const Reducer = (state = initialState, action) =>{
-    return state;
+export const Reducer = (state = initialState, action) => {
+    console.log("Reducer: before update", state);
+    const newState = state;
+    console.log("Reducer: after  update", newState);
+    return newState;
 };
